@@ -12,7 +12,7 @@
                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    <i class="fas fa-bolt fa-2x text-gray-300"></i>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                     <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    <i class="fas fa-power-off fa-2x text-gray-300"></i>
                 </div>
             </div>
         </div>
