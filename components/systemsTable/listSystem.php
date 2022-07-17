@@ -1,6 +1,6 @@
 <?php
 
-include_once(__DIR__."/../config/conectar.php");
+include_once(__DIR__."/../../config/conectar.php");
 
 try {
     $queryListSystems = $pdo->prepare("SELECT * FROM sistemas");
