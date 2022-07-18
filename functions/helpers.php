@@ -5,8 +5,9 @@ function returnRefusedValidationMessage($fieldName, $validationRefused, $httpSta
 
     $response =
         [
-            "field_name" => utf8_encode($fieldName),
-            "validation_refused" => $validationRefused
+            "title" => "Erro ao preencher campo",
+            "message" => "Por favor, preencha o campo ".utf8_encode($fieldName)." corretamente.",
+            "field_name" => $validationRefused,
         ];
 
     $response = json_encode($response);

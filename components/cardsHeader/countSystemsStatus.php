@@ -5,7 +5,7 @@ try {
     /**
      * Contando o numero de sistemas ativos
      */
-    $queryCountActiveSystems = $pdo->prepare("SELECT COUNT(id) as activeSystems FROM sistemas WHERE ativo = 1");
+    $queryCountActiveSystems = $pdo->prepare("SELECT COUNT(id) as activeSystems FROM sistemas WHERE system_status = 1");
 
     $queryCountActiveSystems->execute(); 
     
@@ -17,7 +17,7 @@ try {
      * Contando o numero de sistemas inativos
      */
     
-    $queryCountInactiveSystems = $pdo->prepare("SELECT COUNT(id) as inactiveSystems FROM sistemas WHERE ativo = 0");
+    $queryCountInactiveSystems = $pdo->prepare("SELECT COUNT(id) as inactiveSystems FROM sistemas WHERE system_status = 2");
 
     $queryCountInactiveSystems->execute(); 
     

@@ -22,8 +22,8 @@
     </div>
     <div class="card-body">
 
-        <form name="form" method="POST" action="/pages/pageUpdateSystem/updateSystemInfo.php">
-        <!--<form name="form"> -->
+        <!--<form name="form" method="POST" action="/pages/pageUpdateSystem/updateSystemInfo.php"> -->
+            <form name="form">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Razão Social</label>
@@ -121,10 +121,10 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCity">Rediecionar para (deixe vazio para deixar o redirecionamento desativado)</label>
-                    <input name="redirect" value="<?php
-                                    if ($type == "update") {
-                                        echo (checkIfItWasDeclared($systemInfo['force_redirect']) != "NULL" ? checkIfItWasDeclared($systemInfo['force_redirect']) : "");
-                                    } ?>" type="text" class="form-control" id="inputCity">
+                    <input name="force_redirect" value="<?php
+                                                        if ($type == "update") {
+                                                            echo (checkIfItWasDeclared($systemInfo['force_redirect']) != "NULL" ? checkIfItWasDeclared($systemInfo['force_redirect']) : "");
+                                                        } ?>" type="text" class="form-control" id="inputCity">
 
                 </div>
                 <div class="form-group col-md-4">
@@ -134,15 +134,15 @@
 
                         <option value="1" <?php
 
-                                if ($type == "update") {
-                                    echo (checkIfItWasDeclared($systemInfo['system_status']) == "1" ? "selected" : "");
-                                } ?>>Ativo</option>
+                                            if ($type == "update") {
+                                                echo (checkIfItWasDeclared($systemInfo['system_status']) == "1" ? "selected" : "");
+                                            } ?>>Ativo</option>
 
-                        <option  value="2"  <?php
+                        <option value="2" <?php
 
-                                if ($type == "update") {
-                                    echo (checkIfItWasDeclared($systemInfo['system_status']) == "2" ? "selected" : "");
-                                } ?>>Desativado</option>
+                                            if ($type == "update") {
+                                                echo (checkIfItWasDeclared($systemInfo['system_status']) == "2" ? "selected" : "");
+                                            } ?>>Desativado</option>
                     </select>
                 </div>
             </div>
@@ -150,14 +150,19 @@
                 <div class="form-check">
                     <input name="force_https" value="1" <?php
 
-                            if ($type == "update") {
-                                echo (checkIfItWasDeclared($systemInfo['force_https']) ? "checked" : "");
-                            } ?> class="form-check-input" type="checkbox" id="gridCheck">
+                                                        if ($type == "update") {
+                                                            echo (checkIfItWasDeclared($systemInfo['force_https']) ? "checked" : "");
+                                                        } ?> class="form-check-input" type="checkbox" id="gridCheck">
                     <label class="form-check-label" for="gridCheck">
                         Forçar HTTPS
                     </label>
                 </div>
             </div>
+            <?php
+            if ($type == "update") { ?>
+                <input value="<?php echo htmlspecialchars($_GET["id"])?>" type="hidden" name="id">
+            <?php }
+            ?>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>

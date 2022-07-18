@@ -1,10 +1,12 @@
 <?php
+include_once(__DIR__ . "/../../functions/checkIfYouAreloggedIn.php");
+
 include_once(__DIR__ . "/../../config/conectar.php");
 
 include_once(__DIR__ . "/../../functions/validations.php");
 include_once(__DIR__ . "/../../functions/helpers.php");
 
-include_once(__DIR__."/../../functions/dmlFuntions.php");
+include_once(__DIR__ . "/../../functions/dmlFuntions.php");
 
 $fieldValidations =
     [
@@ -77,27 +79,40 @@ $fieldValidations =
             "required" => false,
             "minimun_size" => 8,
         ],
-        "id"=>[]
     ];
 
 //recebendo dados validados    
 $data = doesCombinedValidationAndReturnValues($fieldValidations, $_POST);
 
-$response = basicUpdate($pdo, "sistemas", $data);
+$foundCnpjInTheBank = selectByCondition($pdo, "sistemas", "`cnpj`= ? ", $data['cnpj']);
+$foundCrmLinkInTheBank = selectByCondition($pdo, "sistemas", "`url`= ? ", $data['url']);
 
-if($response === 200){
-    http_response_code(200);
+
+if ($foundCnpjInTheBank === 404 and $foundCrmLinkInTheBank === 404) {
+    $response = basicInsert($pdo, "sistemas", $data);
+
+    if ($response === 200) {
+        http_response_code(200);
+        $response = [
+            "title" => "Sucesso!",
+            "message" => "Sistema cadastrado com sucesso!"
+        ];
+        echo json_encode($response);
+        exit;
+    } else {
+        http_response_code(500);
+        $response = [
+            "title" => "O processo falhou",
+            "message" => "Falha ao cadastrar sistema!"
+        ];
+        echo json_encode($response);
+        exit;
+    }
+} else {
+    http_response_code(400);
     $response = [
-        "title" => "Sucesso!",
-        "message" => "Dados Alterados com sucesso!"
-    ];
-    echo json_encode($response);
-    exit;
-}else{
-    http_response_code(500);
-    $response = [
-        "title" => "O processo falhou",
-        "message" => "Falha ao alterar dados!"
+        "title" => "Falha ao inserir registro!",
+        "message" => "O CNPJ informado ou a URL do CRM já está cadastrado!"
     ];
     echo json_encode($response);
     exit;

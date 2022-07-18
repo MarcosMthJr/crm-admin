@@ -20,7 +20,7 @@ function doesCombinedValidationAndReturnValues($fieldValidations, $formValues)
                             returnRefusedValidationMessage(
                                 $fieldValidation["field_name"],
                                 $fieldValidationkey,
-                                200
+                                400
                             );
                             exit;
                         }
@@ -28,11 +28,10 @@ function doesCombinedValidationAndReturnValues($fieldValidations, $formValues)
                     break;
                 case 'minimum_size':
                     if (!CheckFieldSize($formValues["$fieldValidationsKey"], $validationValue)) {
-                        http_response_code(200);
                         returnRefusedValidationMessage(
                             $fieldValidation["field_name"],
                             $fieldValidationkey,
-                            200
+                            400
                         );
                         exit;
                     }
@@ -42,7 +41,7 @@ function doesCombinedValidationAndReturnValues($fieldValidations, $formValues)
                         returnRefusedValidationMessage(
                             $fieldValidation["field_name"],
                             $fieldValidationkey,
-                            200
+                            400
                         );
                         exit;
                     }
@@ -52,7 +51,7 @@ function doesCombinedValidationAndReturnValues($fieldValidations, $formValues)
                         returnRefusedValidationMessage(
                             $fieldValidation["field_name"],
                             $fieldValidationkey,
-                            200
+                            400
                         );
                         exit;
                     }
@@ -72,27 +71,6 @@ function checkIfItWasDeclared($formValue)
 {
     if (isset($formValue) and !empty($formValue) and $formValue != "0") {
         return $formValue;
-    }
-    return false;
-}
-
-
-function validRequiredFieldAndReturnMessage($requiredField, $filledFields)
-{
-    foreach ($requiredField as $keyRequiredField => $fieldName) {
-        if (!array_key_exists($keyRequiredField, $filledFields)) {
-            $message = "O campo <b>" . $fieldName . "</b> é obrigatório, por favor, preencha o campo e tente novamente.";
-
-            $response =
-                [
-                    "field" => $fieldName,
-                    "message" => $message
-                ];
-
-            $response = json_encode($response);
-
-            return $response;
-        }
     }
     return false;
 }

@@ -1,3 +1,6 @@
+<?php 
+    include_once(__DIR__."/../../functions/checkIfYouAreloggedIn.php");
+?>
 <head>
 
     <meta charset="utf-8">

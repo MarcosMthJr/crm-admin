@@ -75,7 +75,7 @@ $systemInfo = searchSystemById(htmlspecialchars($_GET["id"]));
 
         <?php include(__DIR__ . "./../../components/jsLibs/jsLibs.php"); ?>
 
-       <!--- <script src="./sendUpdateRequest.js" type="module"></script> -->
+       <script src="./sendUpdateRequest.js" type="module"></script>
 
 
 </body>

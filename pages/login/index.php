@@ -1,6 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+if (!isset($_SESSION)) session_start();
 
+if (isset($_SESSION['userId'])) {
+    header("Location: /index.php"); 
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
 
     <meta charset="utf-8">
@@ -9,16 +16,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>CRM Admin</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -41,19 +46,14 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">CRM - Admin</h1>
                                     </div>
-                                    <form name="form-login" action="./funtions/logar.php" method="POST" class="user">
+                                    <form name="form-login" action='loginFunction.php' method="POST" class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="email" name="email" aria-describedby="emailHelp"
-                                                placeholder="E-Mail">
+                                            <input type="text" class="form-control form-control-user" id="login" name="login" aria-describedby="emailHelp" placeholder="Login">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Senha">
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Senha">
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <button type="submit" class="btn btn-primary">Logar!</button>
                                     </form>
                                 </div>
                             </div>
@@ -67,15 +67,8 @@
 
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <?php include(__DIR__ . "./../../components/jsLibs/jsLibs.php"); ?>
 
 </body>
 
