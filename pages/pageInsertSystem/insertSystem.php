@@ -95,7 +95,8 @@ if ($foundCnpjInTheBank === 404 and $foundCrmLinkInTheBank === 404) {
         http_response_code(200);
         $response = [
             "title" => "Sucesso!",
-            "message" => "Sistema cadastrado com sucesso!"
+            "message" => "Sistema cadastrado com sucesso!",
+            "redirect" => "/index.php"
         ];
         echo json_encode($response);
         exit;

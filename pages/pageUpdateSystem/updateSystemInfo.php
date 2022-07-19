@@ -89,7 +89,8 @@ if($response === 200){
     http_response_code(200);
     $response = [
         "title" => "Sucesso!",
-        "message" => "Dados Alterados com sucesso!"
+        "message" => "Dados Alterados com sucesso!",
+        "redirect" => "/index.php"
     ];
     echo json_encode($response);
     exit;

@@ -1,4 +1,4 @@
-<?php include_once(__DIR__ . "/listSystem.php"); ?>
+<?php include_once(__DIR__ . "/listUsers.php"); ?>
 <div class="card shadow mb-4">
     <div class="card-header py-3" style="display: flex; justify-content: space-between;">
         <h6 class="m-0 font-weight-bold text-primary">Sistemas</h6>
@@ -12,26 +12,29 @@
                 <thead>
                     <tr>
                         <th>#ID</th>
-                        <th>Razão Social</th>
-                        <th>Nome Fantasia</th>
-                        <th>URL</th>
-                        <th>Ativo</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Login</th>
+                        <th>Nível</th>
+                        <th>Status</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (count($resultListSystem) > 0) {
-                        foreach ($resultListSystem as $data) {
-                            $activeText = $data["system_status"] == "1" ? "Sim" : "Não";
+                    if (count($resultListUsers) > 0) {
+                        foreach ($resultListUsers as $data) {
+                            $levelText = $data["level"] == "1" ? "ADM. de Alto Nível" : "ADM. de Baixo Nível";
+                            $activeText = $data["status"] == "1" ? "Sim" : "Não";
                             $rowTable = "
                             <tr>
                                 <td>#" . $data["id"] . "</td>
-                                <td>" . $data["corporate_name"] . "</td>
-                                <td>" . $data["fantasy_name"] . "</td>
-                                <td><a href='https://" . $data["url"] . ".com.br' target='_blank'>" . $data["url"] . "</a></td>
+                                <td>" . $data["name"] . "</td>
+                                <td>" . $data["email"] . "</td>
+                                <td>" . $data["login"] . "</td>
+                                <td>$levelText</td>
                                 <td>$activeText</td>
-                                <td><a href='/pages/pageUpdateSystem/index.php?id=".$data["id"]."'>Editar</a></td>
+                                <td><a href='/pages/pageUpdateUser/index.php?id=".$data["id"]."'>Editar</a></td>
                             </tr>
                             ";
 
@@ -40,7 +43,7 @@
                     } else {
                         $rowTable = "
                         <tr>
-                            <td colspan='6'>Nenhum sistema encontrado no banco de dados</td>
+                            <td colspan='6'>Nenhum usuário encontrado no banco de dados</td>
                         </tr>
                         ";
 

@@ -19,9 +19,9 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- -->
-                    <?php include './../../components/systemCardsHeader/systemCardsHeader.php' ?>
+                    <?php include './../../components/userCardsHeader/usersCardsHeader.php' ?>
 
-                    <?php include './../../components/systemsTable/systemsTable.php' ?>
+                    <?php include './../../components/usersTable/usersTable.php' ?>
 
                     <!--- /.container-fluid -->
 

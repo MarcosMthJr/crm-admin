@@ -1,6 +1,6 @@
 //const btnFechar =  document.querySelector(".modal__close");
-export default function sendDataRequest(configRequest, sendMessage = "Enviando dados...") {
-   
+export default function sendDataRequest(configRequest, sendMessage = "Enviando dados...", login = false) {
+
     configRequest.form.onsubmit = event => {
         event.preventDefault();
         let timerInterval;
@@ -24,17 +24,17 @@ export default function sendDataRequest(configRequest, sendMessage = "Enviando d
             }
         }).then((result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
-    
+
             }
         })
-        makeRequest(event, configRequest);
-    
-    } 
-}   
+        makeRequest(event, configRequest, login);
+
+    }
+}
 
 
 //realizando post
-async function makeRequest(event, configRequest) {
+async function makeRequest(event, configRequest, login) {
     console.log("chegou na  makeRequest");
     const form = event.target;
     const data = new FormData(form);
@@ -46,15 +46,22 @@ async function makeRequest(event, configRequest) {
     const urlRequest = configRequest.requestUrl;
     let request = await fetch(urlRequest, options);
 
-    checkResponse(request);
-   
+    checkResponse(request, login);
+
 
 }
 
-async function checkResponse(requestResponse) {
+async function checkResponse(requestResponse, login) {
     const response = await requestResponse;
     const responseJson = await response.json();
-    if ((response.status >= 200)  && (response.status <= 299)) {
+    if ((response.status >= 200) && (response.status <= 299)) {
+        if (login) {
+
+            console.log("chegou no login");
+            const redirect = `${window.location.href}/index.php`;
+            window.location.href = redirect;
+            return;
+        }
         Swal.fire({
             title: `${responseJson.title}`,
             html: `${responseJson.message}`,
@@ -65,7 +72,7 @@ async function checkResponse(requestResponse) {
             confirmButtonText: 'Ok'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location = 'http://crm-ativomake-admin/';
+                window.location = `${responseJson.redirect}`;
             }
         })
     }
@@ -79,7 +86,7 @@ async function checkResponse(requestResponse) {
             confirmButtonText: 'Ok'
         })
 
-    }else if ((response.status >= 500)) {
+    } else if ((response.status >= 500)) {
         Swal.fire({
             title: `${responseJson.title}`,
             html: `${responseJson.message}`,

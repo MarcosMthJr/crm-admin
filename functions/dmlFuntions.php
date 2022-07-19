@@ -110,7 +110,7 @@ function deleteByCondition($connection, $table, $condition, $conditionValueMatch
 
 function selectByCondition($connection, $table, $condition, $conditionValueMatch)
 {
- 
+
     try {
         $sql = $connection->prepare("SELECT * FROM `$table` WHERE $condition ");
 
@@ -126,7 +126,7 @@ function selectByCondition($connection, $table, $condition, $conditionValueMatch
         }
 
         $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-
+     
         if (count($result) > 0) {
             return $result;
         }

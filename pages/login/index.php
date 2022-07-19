@@ -46,15 +46,7 @@ if (isset($_SESSION['userId'])) {
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">CRM - Admin</h1>
                                     </div>
-                                    <form name="form-login" action='loginFunction.php' method="POST" class="user">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="login" name="login" aria-describedby="emailHelp" placeholder="Login">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Senha">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Logar!</button>
-                                    </form>
+                                   <?php include_once(__DIR__."/../../components/formLogin/formLogin.php") ?>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +61,7 @@ if (isset($_SESSION['userId'])) {
 
 
     <?php include(__DIR__ . "./../../components/jsLibs/jsLibs.php"); ?>
-
+    <script src="./sendRequest.js" type="module"></script>
 </body>
 
 </html>

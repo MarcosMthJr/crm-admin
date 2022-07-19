@@ -52,7 +52,12 @@ if ($foundUser === 404 || $foundUser === 500) {
         $_SESSION['userId'] = $foundUser[0]["id"];
         $_SESSION['userName'] = $foundUser[0]["name"];
         $_SESSION['userAccessLevel'] = $foundUser[0]["level"];
-        header("Location: /pages/mainPage");
+        http_response_code(200);
+        $response = [
+            "title" => "Login realizado com sucesso",
+            "message" => "login com sucesso!"
+        ];
+        echo json_encode($response);
         exit;
     }
 

@@ -18,12 +18,27 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-          
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/pages/pageInsertSystem">
-                <i class="fas fa-plus-circle"></i>
+                    <i class="fas fa-plus-circle"></i>
                     <span>Inserir novo sistema</span></a>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Usuários</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Selecione a opção:</h6>
+                        <a class="collapse-item" href="/pages/userTable/">Lista de usuários</a>
+                        <a class="collapse-item" href="/pages/pageInsertUser/">Inserir novo usuário</a>
+                    </div>
+                </div>
             </li>
         </ul>
         <!-- End of Sidebar -->
